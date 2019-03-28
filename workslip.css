@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+
+thead, tbody {
+  display: inline-block;
+}
+
+th {
+  text-align: right;
+}
+
+td {
+  text-align: left;
+}

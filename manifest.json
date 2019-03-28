@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "MAD-TS Workslip",
+  "version": "0.1",
+  "author": "Lucas Schneider",
+  "description": "Context menu link to print TS workslips for Madison Central Library of Wisconsin's South Central Library System",
+  "homepage_url": "https://lrschneider.com/mad-ts-workslip",
+
+  "incognito": "spanning",
+
+  "icons": {
+      "16": "/img/icon16.png",
+      "32": "/img/icon32.png",
+      "48": "/img/icon48.png",
+      "64": "/img/icon64.png",
+      "128": "/img/icon128.png"
+    },
+
+    "background": {
+      "scripts": [
+        "/background.js"
+      ],
+      "persistent": false
+    },
+
+    "permissions": [
+      "contextMenus",
+      "tabs",
+      "*://*.kohalibrary.com/*"
+    ]
+}
