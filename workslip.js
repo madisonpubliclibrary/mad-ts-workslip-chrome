@@ -137,9 +137,7 @@
       let receiptStatus = document.createElement('td');
 
       copyLoc.textContent = copy.copyLoc;
-      copyLoc.style.marginRight = '1em';
       staffNote.textContent = copy.staffNote;
-      staffNote.style.marginRight = '1em';
       receiptStatus.textContent = copy.receiptStatus;
 
       tr.appendChild(copyLoc);
