@@ -37,3 +37,8 @@ td.dateStreet {
   text-align: right;
   padding-right: 1em;
 }
+
+#copyTable th,
+#copyTable td {
+  padding-right: 1em;
+}

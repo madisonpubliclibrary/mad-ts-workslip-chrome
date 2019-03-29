@@ -28,7 +28,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
                 }, 5000);
             });
           } else {
-          resolve('');
+            resolve('');
           }
         });
 
@@ -40,7 +40,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           }, function(tab) {
             setTimeout(function() {
               chrome.tabs.sendMessage(tab.id, data);
-            }, 50);
+            }, 100);
           });
         });
       }

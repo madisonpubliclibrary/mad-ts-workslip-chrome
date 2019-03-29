@@ -19,9 +19,10 @@
   let bibRecId = document.querySelector('td.bibRecId');
   let orderLineRef = document.querySelector('td.orderLineRef');
 
-  let copyTable = document.getElementById('copyTable');
+  let copyTableBody = document.getElementById('copyTableBody');
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(request);
     if (request.poNum !== '') {
       poNum.textContent = request.poNum;
     } else {
@@ -136,15 +137,29 @@
       let staffNote = document.createElement('td');
       let receiptStatus = document.createElement('td');
 
-      copyLoc.textContent = copy.copyLoc;
-      staffNote.textContent = copy.staffNote;
-      receiptStatus.textContent = copy.receiptStatus;
+      if (copy.copyLoc !== '') {
+        copyLoc.textContent = copy.copyLoc;
+      } else {
+        copyLoc.innerHTML = '&nbsp;';
+      }
+
+      if (copy.staffNote !== '') {
+        staffNote.textContent = copy.staffNote;
+      } else {
+        staffNote.innerHTML = '&nbsp;';
+      }
+
+      if (copy.receiptStatus !== '') {
+        receiptStatus.textContent = copy.receiptStatus;
+      } else {
+        receiptStatus.innerHTML = '&nbsp;';
+      }
 
       tr.appendChild(copyLoc);
       tr.appendChild(staffNote);
       tr.appendChild(receiptStatus);
 
-      copyTable.appendChild(tr);
+      copyTableBody.appendChild(tr);
     }
 
     window.print();
