@@ -1,15 +1,39 @@
+@page {
+  size: landscape;
+}
+
+body {
+  font-size: 12pt;
+}
+
 h1 {
   text-align: center;
 }
 
-thead, tbody {
-  display: inline-block;
-}
-
-th {
-  text-align: right;
-}
-
 td {
   text-align: left;
+}
+
+td.dateStreet {
+  border-bottom: 1px solid black;
+}
+
+.column {
+  width: 49%;
+  float: left;
+}
+
+.otherNotes {
+  text-align: left;
+  border-top: 1px solid black;
+}
+
+#dataTable,
+#copyTable {
+  border-collapse: collapse;
+}
+
+#dataTable th {
+  text-align: right;
+  padding-right: 1em;
 }

@@ -7,50 +7,38 @@
   </head>
   <body>
     <h1>MAD-TS Workslip</h1>
-    <table>
-      <thead>
-        <tr><th class="poNum">Purchase Order No.:</th></tr>
-        <tr><th class="dateToday">Date:</th></tr>
-        <tr><th class="holds">Holds:</th></tr>
-        <tr><th class="dateStreet">Street Date:</th></tr>
-        <tr><th class="title">Title:</th></tr>
-        <tr><th class="author">Author:</th></tr>
-        <tr><th class="callNumber">Call No.:</th></tr>
-        <tr><th class="isbn">ISBN:</th></tr>
-        <tr><th class="issn">ISSN:</th></tr>
-        <tr><th class="ismn">ISMN:</th></tr>
-        <tr><th class="upc">UPC:</th></tr>
-        <tr><th class="manufactNum">Manufacturer No.:</th></tr>
-        <tr><th class="supplierNum">Supplier No.:</th></tr>
-        <tr><th class="publisher">Publisher:</th></tr>
-        <tr><th class="datePub">Date of Publication:</th></tr>
-        <tr><th class="edition">Edition:</th></tr>
-        <tr><th class="description">Description:</th></tr>
-        <tr><th class="bibRecId">Bib. Record ID:</th></tr>
-        <tr><th class="orderLineRef">Order Line Reference:</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="poNum"></td></tr>
-        <tr><td class="dateToday"></td></tr>
-        <tr><td class="holds"></td></tr>
-        <tr><td class="dateStreet"></td></tr>
-        <tr><td class="title"></td></tr>
-        <tr><td class="author"></td></tr>
-        <tr><td class="callNumber"></td></tr>
-        <tr><td class="isbn"></td></tr>
-        <tr><td class="issn"></td></tr>
-        <tr><td class="ismn"></td></tr>
-        <tr><td class="upc"></td></tr>
-        <tr><td class="manufactNum"></td></tr>
-        <tr><td class="supplierNum"></td></tr>
-        <tr><td class="publisher"></td></tr>
-        <tr><td class="datePub"></td></tr>
-        <tr><td class="edition"></td></tr>
-        <tr><td class="description"></td></tr>
-        <tr><td class="bibRecId"></td></tr>
-        <tr><td class="orderLineRef"></td></tr>
-      </tbody>
-    </table>
+    <div class="column">
+      <h2>Record Data</h2>
+      <table id="dataTable">
+        <tr><th class="poNum">Purchase Order No.:</th><td class="poNum"></td></tr>
+        <tr><th class="dateToday">Date:</th><td class="dateToday"></td></tr>
+        <tr><th class="holds">Holds:</th><td class="holds"></td></tr>
+        <tr><th class="dateStreet">Street Date:</th><td class="dateStreet"></td></tr>
+        <tr><th class="title">Title:</th><td class="title"></td></tr>
+        <tr><th class="author">Author:</th><td class="author"></td></tr>
+        <tr><th class="callNumber">Call No.:</th><td class="callNumber"></td></tr>
+        <tr><th class="isbn">ISBN:</th><td class="isbn"></td></tr>
+        <tr><th class="issn">ISSN:</th><td class="issn"></td></tr>
+        <tr><th class="ismn">ISMN:</th><td class="ismn"></td></tr>
+        <tr><th class="upc">UPC:</th><td class="upc"></td></tr>
+        <tr><th class="manufactNum">Manufacturer No.:</th><td class="manufactNum"></td></tr>
+        <tr><th class="supplierNum">Supplier No.:</th><td class="supplierNum"></td></tr>
+        <tr><th class="publisher">Publisher:</th><td class="publisher"></td></tr>
+        <tr><th class="datePub">Date of Publication:</th><td class="datePub"></td></tr>
+        <tr><th class="edition">Edition:</th><td class="edition"></td></tr>
+        <tr><th class="description">Description:</th><td class="description"></td></tr>
+        <tr><th class="bibRecId">Bib. Record ID:</th><td class="bibRecId"></td></tr>
+        <tr><th class="orderLineRef">Order Line Reference:</th><td class="orderLineRef"></td></tr>
+        <tr><th></th><td></td></tr>
+        <tr><th class="otherNotes">Other Notes:</th><td class="otherNotes"></td></tr>
+      </table>
+    </div>
+    <div class="column">
+      <h2>Copies</h2>
+      <table id="copyTable">
+        <tr><th>Copy Location</th><th>Staff Note</th><th>Receipt Status</th></tr>
+      </table>
+    </div>
     <script type="text/javascript" src="workslip.js"></script>
   </body>
 </html>
