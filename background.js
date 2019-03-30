@@ -32,8 +32,29 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           }
         });
 
-        getHolds.then(res => {
-          data.holds = res;
+        let getMARCData = new Promise(function(resolve, reject) {
+          if (data.bibRecId.length > 0) {
+            chrome.tabs.create({
+              "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=" + data.bibRecId,
+              "active": false
+            }, function(marcTab) {
+                setTimeout(() => {
+                  chrome.tabs.executeScript(marcTab.id, {
+                    "file": "getMARCData.js"
+                  }, marcArr => {
+                    chrome.tabs.remove(marcTab.id);
+                    resolve(marcArr[0]);
+                  });
+                }, 5000);
+            });
+          } else {
+            resolve('');
+          }
+        });
+
+        Promise.all([getHolds, getMARCData]).then(res => {
+          data.holds = res[0];
+          data.marcData = res[1];
 
           chrome.tabs.create({
             "url": chrome.runtime.getURL("workslip.html")

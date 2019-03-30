@@ -1,9 +1,11 @@
 @page {
-  size: landscape;
+  size: 11in 8.5in;
+  margin: 0;
 }
 
 body {
-  font-size: 12pt;
+  font-size: 11pt;
+  padding: 0.5in 0.75in 0 0.75in;
 }
 
 h1 {
@@ -19,7 +21,7 @@ td.dateStreet {
 }
 
 .column {
-  width: 49%;
+  width: 4.25in;
   float: left;
 }
 
@@ -28,17 +30,48 @@ td.dateStreet {
   border-top: 1px solid black;
 }
 
+.column:first-child {
+  padding-right: 0.5in;
+}
+
+#dateStreet {
+  margin: 0;
+  position: absolute;
+}
+
+/* Clear floats after the columns */
+#columnWrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 #dataTable,
 #copyTable {
   border-collapse: collapse;
 }
 
 #dataTable th {
+  vertical-align: top;
   text-align: right;
   padding-right: 1em;
+  white-space: nowrap;
 }
 
-#copyTable th,
+#copyTable th {
+  text-align: center;
+  padding 0 0.5em 0 0.5em;
+}
+
 #copyTable td {
-  padding-right: 1em;
+  vertical-align: top;
+  text-align: center;
+}
+
+#copyTable td:first-child {
+  white-space: nowrap;
+}
+
+#copyTable td:last-child {
+  text-align: left;
 }

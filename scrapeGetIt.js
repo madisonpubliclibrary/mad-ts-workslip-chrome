@@ -26,6 +26,10 @@
     data.supplierNum = supplierNum ? supplierNum.value : '';
     let publisher = contentDoc.querySelector('input[ng-model="formdata.publisher"]');
     data.publisher = publisher ? publisher.value : '';
+    let listPrice = contentDoc.querySelector('input[ng-model="formdata.list_price"]');
+    data.listPrice = listPrice ? listPrice.value : '';
+    let discountedPrice = contentDoc.querySelector('input[ng-model="formdata.discounted_price"]');
+    data.discountedPrice = discountedPrice ? discountedPrice.value : '';
     let datePub = contentDoc.querySelector('input[ng-model="formdata.date_of_publication"]');
     data.datePub = datePub ? datePub.value : '';
     let edition = contentDoc.querySelector('input[ng-model="formdata.edition"]');
@@ -55,13 +59,14 @@
         let copy = {};
 
         copy.copyLoc = row.children[0].textContent.trim();
-        copy.receiptStatus = row.children[2].textContent.trim();
+        copy.receiptStatus = row.children[2].textContent.trim().substring(0,3) + '\'d';
         copy.staffNote = row.children[7].textContent.trim();
 
         data.copies.push(copy);
       }
-    }
 
+      data.copies.sort((a,b) => {return a.copyLoc > b.copyLoc ? 1 : b.copyLoc > a.copyLoc ? -1 : 0;});
+    }
   }
   return data;
 })();
