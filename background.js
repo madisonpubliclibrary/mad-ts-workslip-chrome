@@ -12,20 +12,19 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }, (resultArr) => {
       if (resultArr.length > 0) {
         let data = resultArr[0];
+
         let getHolds = new Promise(function(resolve, reject) {
           if (data.bibRecId.length > 0) {
             chrome.tabs.create({
               "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/catalogue/detail.pl?biblionumber=" + data.bibRecId,
               "active": false
             }, function(holdsTab) {
-                setTimeout(() => {
-                  chrome.tabs.executeScript(holdsTab.id, {
-                    "file": "getNumHolds.js"
-                  }, holdsArr => {
-                    chrome.tabs.remove(holdsTab.id);
-                    resolve(holdsArr[0]);
-                  });
-                }, 5000);
+              chrome.tabs.executeScript(holdsTab.id, {
+                "file": "getNumHolds.js"
+              }, holdsArr => {
+                chrome.tabs.remove(holdsTab.id);
+                resolve(holdsArr[0]);
+              });
             });
           } else {
             resolve('');
@@ -38,14 +37,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
               "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=" + data.bibRecId,
               "active": false
             }, function(marcTab) {
-                setTimeout(() => {
-                  chrome.tabs.executeScript(marcTab.id, {
-                    "file": "getMARCData.js"
-                  }, marcArr => {
-                    chrome.tabs.remove(marcTab.id);
-                    resolve(marcArr[0]);
-                  });
-                }, 5000);
+              chrome.tabs.executeScript(marcTab.id, {
+                "file": "getMARCData.js"
+              }, marcArr => {
+                chrome.tabs.remove(marcTab.id);
+                resolve(marcArr[0]);
+              });
             });
           } else {
             resolve('');
