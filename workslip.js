@@ -22,11 +22,12 @@
   let edition = document.querySelector('td.edition');
   let description = document.querySelector('td.description');
   let bibRecId = document.querySelector('td.bibRecId');
+  let rush = document.getElementById('rush');
+  let totalCopies = document.getElementById('totalCopies');
 
   let copyTableBody = document.getElementById('copyTableBody');
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log(request);
     if (request.poNum !== '') {
       poNum.textContent = request.poNum;
     } else {
@@ -159,7 +160,15 @@
       bibRecId.parentElement.style.display = 'none';
     }
 
-    for  (let copy of request.copies) {
+    if (request.rush) {
+      rush.style.display = 'block';
+    }
+
+    if (request.totalCopies) {
+      totalCopies.textContent = request.totalCopies;
+    }
+
+    for (let copy of request.copies) {
       let tr = document.createElement('tr');
       let copyLoc = document.createElement('td');
       let staffNote = document.createElement('td');

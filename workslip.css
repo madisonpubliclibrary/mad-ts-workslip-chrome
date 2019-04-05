@@ -1,6 +1,6 @@
 @page {
   size: 11in 8.5in;
-  margin: 0;
+  margin: 1em;
 }
 
 body {
@@ -74,4 +74,9 @@ td.dateStreet {
 
 #copyTable td:last-child {
   text-align: left;
+}
+
+#rush {
+  display: none;
+  font-style: italic;
 }

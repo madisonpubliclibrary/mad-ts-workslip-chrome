@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   let contentDoc = document.getElementById('frame');
-  let data = {"dateToday": (new Date()).toLocaleDateString()};
+  let data = {"dateToday": (new Date()).toLocaleDateString(), "rush": false};
 
   if (contentDoc) {
     contentDoc = contentDoc.contentWindow.document;
@@ -38,6 +38,8 @@
     data.description = description ? description.value : '';
     let bibRecId = contentDoc.querySelector('.active input[ng-model="formdata.bibliographic_record_id"]');
     data.bibRecId = bibRecId ? bibRecId.value : '';
+    let totalCopies = contentDoc.querySelector('.active div[ng-controller="PurchaseOrderLinesSummary"] .po_header_lines p:first-child');
+    data.totalCopies = totalCopies !== null ? totalCopies.textContent.match(/\d+/)[0] : '?';
     let orderLineRef = contentDoc.querySelector('.active input[ng-model="formdata.order_line_reference"]');
     if (orderLineRef && orderLineRef.value.length > 0) {
       data.orderLineRef = orderLineRef.value;
@@ -61,6 +63,10 @@
         copy.copyLoc = row.children[0].textContent.trim();
         copy.receiptStatus = row.children[2].textContent.trim().substring(0,3) + '\'d';
         copy.staffNote = row.children[7].textContent.trim();
+
+        if (/[^a-zA-Z]*rush[^a-zA-Z]*/i.test(copy.staffNote)) {
+          data.rush = true;
+        }
 
         data.copies.push(copy);
       }
