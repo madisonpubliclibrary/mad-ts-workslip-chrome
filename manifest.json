@@ -29,6 +29,7 @@
           "https://scls-mad-staff.kohalibrary.com/cgi-bin/koha/acqui/getit.pl",
           "https://scls-mad-staff.kohalibrary.com/getit/public/index.html"
         ],
+        "all_frames": true,
         "js": [
           "ctrlColonPrint.js"
         ]
