@@ -93,7 +93,7 @@
       if (request.marcData.hasOwnProperty('300')) {
         bibDescrip.textContent = request.marcData['300'];
       } else {
-        bibdescrip.innerHTML = '&nbsp;';
+        bibDescrip.innerHTML = '&nbsp;';
       }
     }
 
