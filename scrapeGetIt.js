@@ -10,8 +10,8 @@
     data.title = title ? title.value : '';
     let author = contentDoc.querySelector('.active input[ng-model="formdata.author"]');
     data.author = author ? author.value : '';
-    let callNumber = contentDoc.querySelector('.active input[ng-model="formdata.EAN13"]');
-    data.callNumber = callNumber ? callNumber.value : '';
+    let ean13 = contentDoc.querySelector('.active input[ng-model="formdata.EAN13"]');
+    data.ean13 = ean13 ? ean13.value : '';
     let isbn = contentDoc.querySelector('.active input[ng-model="formdata.ISBN"]');
     data.isbn = isbn ? isbn.value : '';
     let issn = contentDoc.querySelector('.active input[ng-model="formdata.ISSN"]');

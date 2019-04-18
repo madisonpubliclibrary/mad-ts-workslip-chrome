@@ -4,10 +4,10 @@
   let dateToday = document.querySelector('td.dateToday');
   let holds = document.querySelector('td.holds');
   let title = document.querySelector('td.title');
-  let bibRecId = document.querySelector('td.bibRecId');
-  let bibDescrip = document.querySelector('td.bibDescrip');
   let author = document.querySelector('td.author');
-  let callNumber = document.querySelector('td.callNumber');
+  let bibRecId = document.querySelector('td.bibRecId');
+  let marc300 = document.querySelector('td.marc300');
+  let ean13 = document.querySelector('td.ean13');
   let marc092a = document.querySelector('td.marc092a');
   let marc092b = document.querySelector('td.marc092b');
   let marc099a = document.querySelector('td.marc099a');
@@ -22,7 +22,7 @@
   let discountedPrice = document.querySelector('td.discountedPrice');
   let datePub = document.querySelector('td.datePub');
   let edition = document.querySelector('td.edition');
-  let description = document.querySelector('td.description');
+  let getitDescription = document.querySelector('td.getitDescription');
   let rush = document.getElementById('rush');
   let totalCopies = document.getElementById('totalCopies');
 
@@ -65,10 +65,10 @@
       bibRecId.parentElement.style.display = 'none';
     }
 
-    if (request.callNumber !== '') {
-      callNumber.textContent = request.callNumber;
+    if (request.ean13 !== '') {
+      ean13.textContent = request.ean13;
     } else {
-      callNumber.parentElement.style.display = 'none';
+      ean13.parentElement.style.display = 'none';
     }
 
     if (request.hasOwnProperty('marcData')) {
@@ -91,9 +91,9 @@
       }
 
       if (request.marcData.hasOwnProperty('300')) {
-        bibDescrip.textContent = request.marcData['300'];
+        marc300.textContent = request.marcData['300'];
       } else {
-        bibDescrip.innerHTML = '&nbsp;';
+        marc300.innerHTML = '&nbsp;';
       }
     }
 
@@ -164,9 +164,9 @@
     }
 
     if (request.description !== '') {
-      description.textContent = request.description;
+      getitDescription.textContent = request.description;
     } else {
-      description.parentElement.style.display = 'none';
+      getitDescription.parentElement.style.display = 'none';
     }
 
     if (request.rush) {
