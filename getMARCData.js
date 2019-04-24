@@ -18,8 +18,14 @@
 
     const bibDescriptionArr = [];
 
-    if (marc092a) marcData['092a'] = marc092a.value;
-    if (marc092b) marcData['092b'] = marc092b.value;
+    if (marc092a) {
+      marcData['092'] = marc092a.value;
+
+      if (marc092b) marcData['092'] += ' ' + marc092b.value;
+    } else if (marc092b) {
+      marcData['092'] = marc092b.value;
+    }
+
     if (marc099a) marcData['099a'] = marc099a.value;
 
     if (marc300a) bibDescriptionArr.push(marc300a.value);

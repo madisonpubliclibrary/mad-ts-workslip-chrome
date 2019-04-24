@@ -1,13 +1,20 @@
 (function() {
   'use strict';
-  let holdsNotice = document.querySelector(".dialogue.alert b");
-  let loginError = document.getElementById('login_error');
+  const holdsNotice = document.querySelector(".dialogue.alert b");
+  const loginError = document.getElementById('login_error');
+  const linkCopies = document.querySelector('#tabs-holdings tbody');
 
   if (loginError !== null) {
     return 'holdsError';
   } else if (holdsNotice) {
-    return /\d+/.exec(holdsNotice.textContent.match(/There are a total of \d+ holds/)[0])[0];
+    return {
+      "holds": /\d+/.exec(holdsNotice.textContent.match(/There are a total of \d+ holds/)[0])[0],
+      "linkCopies": linkCopies.children.length - 1
+    };
   } else {
-    return 0;
+    return {
+      "holds": 0,
+      "linkCopies": linkCopies.children.length - 1
+    };
   }
 })();

@@ -38,8 +38,8 @@
     data.description = description ? description.value : '';
     let bibRecId = contentDoc.querySelector('.active input[ng-model="formdata.bibliographic_record_id"]');
     data.bibRecId = bibRecId ? bibRecId.value : '';
-    let totalCopies = contentDoc.querySelector('.active div[ng-controller="PurchaseOrderLinesSummary"] .po_header_lines p:first-child');
-    data.totalCopies = totalCopies !== null ? totalCopies.textContent.match(/\d+/)[0] : '?';
+    let getitCopies = contentDoc.querySelector('.active div[ng-controller="PurchaseOrderLinesSummary"] .po_header_lines p:first-child');
+    data.getitCopies = getitCopies !== null ? getitCopies.textContent.match(/\d+/)[0] : '?';
     let orderLineRef = contentDoc.querySelector('.active input[ng-model="formdata.order_line_reference"]');
     if (orderLineRef && orderLineRef.value.length > 0) {
       data.orderLineRef = orderLineRef.value;

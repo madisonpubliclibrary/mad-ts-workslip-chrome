@@ -8,8 +8,7 @@
   let bibRecId = document.querySelector('td.bibRecId');
   let marc300 = document.querySelector('td.marc300');
   let ean13 = document.querySelector('td.ean13');
-  let marc092a = document.querySelector('td.marc092a');
-  let marc092b = document.querySelector('td.marc092b');
+  let marc092 = document.querySelector('td.marc092');
   let marc099a = document.querySelector('td.marc099a');
   let isbn = document.querySelector('td.isbn');
   let issn = document.querySelector('td.issn');
@@ -24,7 +23,8 @@
   let edition = document.querySelector('td.edition');
   let getitDescription = document.querySelector('td.getitDescription');
   let rush = document.getElementById('rush');
-  let totalCopies = document.getElementById('totalCopies');
+  let getitCopies = document.getElementById('getitCopies');
+  let linkCopies = document.getElementById('linkCopies');
 
   let copyTableBody = document.getElementById('copyTableBody');
 
@@ -72,16 +72,10 @@
     }
 
     if (request.hasOwnProperty('marcData')) {
-      if (request.marcData.hasOwnProperty('092a')) {
-        marc092a.textContent = request.marcData['092a'];
+      if (request.marcData.hasOwnProperty('092')) {
+        marc092.textContent = request.marcData['092'];
       } else {
-        marc092a.innerHTML = '&nbsp;';
-      }
-
-      if (request.marcData.hasOwnProperty('092b')) {
-        marc092b.textContent = request.marcData['092b'];
-      } else {
-        marc092b.innerHTML = '&nbsp;';
+        marc092.innerHTML = '&nbsp;';
       }
 
       if (request.marcData.hasOwnProperty('099a')) {
@@ -173,8 +167,16 @@
       rush.style.display = 'block';
     }
 
-    if (request.totalCopies) {
-      totalCopies.textContent = request.totalCopies;
+    if (request.getitCopies) {
+      getitCopies.textContent = request.getitCopies;
+    } else {
+      getitCopies.textContent = '?';
+    }
+
+    if (request.linkCopies) {
+      linkCopies.textContent = request.linkCopies;
+    } else {
+      linkCopies.textContent = '?';
     }
 
     for (let copy of request.copies) {

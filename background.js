@@ -55,7 +55,8 @@ function printWorkslip(tab) {
       let getMARCData = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=" + data.bibRecId,
+            "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber="
+                   + data.bibRecId + '&frameworkcode=BKS',
             "active": false
           }, function(marcTab) {
             chrome.tabs.executeScript(marcTab.id, {
@@ -76,7 +77,8 @@ function printWorkslip(tab) {
       });
 
       Promise.all([getHolds, getMARCData]).then(res => {
-        data.holds = res[0];
+        data.holds = res[0].holds;
+        data.linkCopies = res[0].linkCopies;
         data.marcData = res[1];
 
         chrome.tabs.create({
@@ -86,7 +88,7 @@ function printWorkslip(tab) {
             chrome.tabs.sendMessage(tab.id, data, () => {
               chrome.tabs.remove(tab.id);
             });
-          }, 250);
+          }, 450);
         });
       }, reject => {
         chrome.tabs.create({
