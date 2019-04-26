@@ -43,6 +43,9 @@
     let orderLineRef = contentDoc.querySelector('.active input[ng-model="formdata.order_line_reference"]');
     if (orderLineRef && orderLineRef.value.length > 0) {
       data.orderLineRef = orderLineRef.value;
+      if (/[^a-z]*rush[^a-z]*/i.test(orderLineRef.value)) {
+        data.rush = true;
+      }
       let orderLineRefParts = orderLineRef.value.split('-');
       orderLineRefParts.pop();
       data.poNum = orderLineRefParts.join('-');
@@ -50,6 +53,9 @@
       data.orderLineRef = '';
       data.poNum = '';
     }
+
+    let rushCheckbox = contentDoc.querySelector('.active input[ng-model="formdata.rush"]');
+    if (rushCheckbox.checked) data.rush = true;
 
     data.copies = [];
     let copyTable = contentDoc.querySelector('.active div[ng-include="\'app/purchase_order_line_copies/index.html\'"] .ngCanvas');
