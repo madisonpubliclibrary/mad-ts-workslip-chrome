@@ -54,7 +54,7 @@ The second half of the workslip is a table showing the copies on order.
 | Column | Data |
 | :----: | :--: |
 | Copies (GetIt: #, LINKcat: #) | Table Heading; First number in parenthesis afterward is the total number of GetIt items (i.e. the number of items that should print on workslip). Second number in parenthesis after that is the total number of items on the bib & will include the number of MPL/GetIt items. |
-| Copy Location |  Pulls information from Copy - Loc column of Item table. All items should be listed, automatically in alphabetical order. For titles with more than 15 copies, receiver will have to adjust number of items in GetIt table by manually changing the page number [i.e. number of items on the screen] and then "scroll" a bit before attempting to print. Ask Tina for a demonstration. |
+| Copy Location |  Pulls information from Copy - Loc column of Item table. All items should be listed in alphabetical order. For titles with more than 15 copies, receiver will have to adjust number of items in GetIt table by manually changing the page number [i.e. number of items on the screen] and then "scroll" a bit before attempting to print. Ask Tina for a demonstration. |
 | Receipt Status | Prints if Expected ("Exp'd") or Received ("Rec'd") |
 | Staff Note | Scraped from staff note field |
 
