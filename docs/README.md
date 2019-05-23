@@ -1,9 +1,22 @@
 # MAD-TS Workslip
+
 | Current Version | Install on Google Chrome | Author |
 | :-------------: | :----------------: | :----: |
 | <br>0.9         | <br>[Install MAD-TS Workslip][1] | Lucas Schneider<br>Library Page II<br>MPL–Central |
 
 This extension is developed for the Technical Services department of Madison Central Library in Madison, WI. It aggregates data from GetIt and Liblime Koha to streamline acquisitions processing by generating a printable workslip.
+
+## How to Generate workslip
+1. Open up GetIt, navigate to purchase order line (i.e. purchase order for item).
+2. Right click anywhere in GetIt. (I prefer white space)
+3. Click on "Print MAD-TS Workslip"
+4. Wait up to 5 seconds for the browser to open and navigate to Workslip print tab. (It will also open up and then close two other tabs as it collects data.)
+5. Workslip tab should automatically close after printing.
+
+**Note:** There is also the keyboard shortcut [CTRL] + [;] as an alternative to using the context menu (i.e. right-click menu)
+
+## Other Notes
+Workslip folds in half best when page setup is landscape orientation, scale: 100%.
 
 ## Explanation of Workslip
 The table below lists what fields are present on the first half of the workslip, where the data is scraped from, and notes about how it's displayed.
@@ -44,17 +57,5 @@ The second half of the workslip is a table showing the copies on order.
 | Copy Location |  Pulls information from Copy - Loc column of Item table. All items should be listed, automatically in alphabetical order. For titles with more than 15 copies, receiver will have to adjust number of items in GetIt table by manually changing the page number [i.e. number of items on the screen] and then "scroll" a bit before attempting to print. Ask Tina for a demonstration. |
 | Receipt Status | Prints if Expected ("Exp'd") or Received ("Rec'd") |
 | Staff Note | Scraped from staff note field |
-
-## How to Generate workslip
-1. Open up GetIt, navigate to purchase order line (i.e. purchase order for item).
-2. Right click anywhere in GetIt. (I prefer white space)
-3. Click on "Print MAD-TS Workslip"
-4. Wait up to 5 seconds for the browser to open and navigate to Workslip print tab. (It will also open up and then close two other tabs as it collects data.)
-5. Workslip tab should automatically close after printing.
-
-**Note:** There is also the keyboard shortcut [CTRL] + [;] as an alternative to using the context menu (i.e. right-click menu)
-
-## Other Notes
-Workslip folds in half best when page setup is landscape orientation, scale: 100%.
 
   [1]: https://chrome.google.com/webstore/detail/iaofdkhjgbkaappnmefocfheffceihlk
