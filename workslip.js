@@ -165,6 +165,9 @@
 
     if (request.rush) {
       rush.style.display = 'block';
+      if (parseInt(request.holds) >= 50) {
+        rush.textContent = 'Super rush order!';
+      }
     }
 
     if (request.getitCopies) {
@@ -173,7 +176,7 @@
       getitCopies.textContent = '?';
     }
 
-    if (request.linkCopies) {
+    if (request.linkCopies || request.linkCopies === 0) {
       linkCopies.textContent = request.linkCopies;
     } else {
       linkCopies.textContent = '?';

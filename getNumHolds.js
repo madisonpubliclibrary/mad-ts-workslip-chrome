@@ -6,6 +6,11 @@
 
   if (loginError !== null) {
     return 'holdsError';
+  } else if (document.body.textContent.includes('Cannot find biblionumber')) {
+    return {
+      "holds": 'No bib in Koha',
+      "linkCopies": 0
+    };
   } else if (holdsNotice) {
     return {
       "holds": /\d+/.exec(holdsNotice.textContent.match(/There are a total of \d+ holds/)[0])[0],
