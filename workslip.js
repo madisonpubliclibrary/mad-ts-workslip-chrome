@@ -3,7 +3,9 @@
   let poNum = document.querySelector('td.poNum');
   let dateToday = document.querySelector('td.dateToday');
   let holds = document.querySelector('td.holds');
+  let titleTH = document.querySelector('th.title');
   let title = document.querySelector('td.title');
+  let authorTH = document.querySelector('th.author');
   let author = document.querySelector('td.author');
   let bibRecId = document.querySelector('td.bibRecId');
   let marc300 = document.querySelector('td.marc300');
@@ -11,6 +13,7 @@
   let marc092 = document.querySelector('td.marc092');
   let marc099a = document.querySelector('td.marc099a');
   let isbn = document.querySelector('td.isbn');
+  let isbnMARC = document.querySelector('td.isbnMARC');
   let issn = document.querySelector('td.issn');
   let ismn = document.querySelector('td.ismn');
   let upc = document.querySelector('td.upc');
@@ -71,7 +74,11 @@
       ean13.parentElement.style.display = 'none';
     }
 
-    if (request.hasOwnProperty('marcData')) {
+    if (request.hasOwnProperty('marcData') && request.marcData !== '') {
+      if (request.marcData.hasOwnProperty('020') && request.isbn !== '' && request.marcData['020'].includes(request.isbn)) {
+        isbnMARC.textContent = 'Yes';
+      }
+
       if (request.marcData.hasOwnProperty('092')) {
         marc092.textContent = request.marcData['092'];
       } else {
@@ -84,17 +91,33 @@
         marc099a.innerHTML = '&nbsp;';
       }
 
-      if (request.marcData.hasOwnProperty('300')) {
+      // Override title if it was found in MARC data
+      if (request.marcData.hasOwnProperty('245')) {
+        titleTH.textContent = 'MARC 245' + request.marcData['245fields']
+        title.textContent = request.marcData['245'];
+      }
+
+      // Override author if it was found in MARC data
+      if (request.marcData.hasOwnProperty('100+700')) {
+        authorTH.textContent = request.marcData['100+700title']
+        author.textContent = request.marcData['100+700'];
+      }
+
+      if (request.marcData.hasOwnProperty('300') && request.marcData['300'] !== '') {
         marc300.textContent = request.marcData['300'];
       } else {
-        marc300.innerHTML = '&nbsp;';
+        marc300.parentElement.style.display = 'none';
       }
+    } else {
+      isbnMARC.parentElement.style.display = 'none';
+      marc300.parentElement.style.display = 'none';
     }
 
     if (request.isbn !== '') {
       isbn.textContent = request.isbn;
     } else {
       isbn.parentElement.style.display = 'none';
+      isbnMARC.parentElement.style.display = 'none';
     }
 
     if (request.issn !== '') {
@@ -182,7 +205,7 @@
       linkCopies.textContent = '?';
     }
 
-    for (let copy of request.copies) {
+    for  (let copy of request.copies) {
       let tr = document.createElement('tr');
       let copyLoc = document.createElement('td');
       let staffNote = document.createElement('td');

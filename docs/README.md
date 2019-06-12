@@ -2,7 +2,7 @@
 
 | Current Version | Install on Google Chrome | Author |
 | :-------------: | :----------------: | :----: |
-| <br>0.9         | <br>[Install MAD-TS Workslip][1] | Lucas Schneider<br>Library Page II<br>MPL–Central |
+| <br>0.10        | <br>[Install MAD-TS Workslip][1] | Lucas Schneider<br>Library Page II<br>MPL–Central |
 
 This extension is developed for the Technical Services department of Madison Central Library in Madison, WI. It aggregates data from GetIt and Liblime Koha to streamline acquisitions processing by generating a printable workslip.
 
@@ -28,14 +28,15 @@ The table below lists what fields are present on the first half of the workslip,
 | Purchase Order No. | GetIt |  |
 | Date | N/A |  |
 | Holds | Koha Normal Screen | When there is a bib record ID linked in GetIt, but that bib record doesn't exist in Koha, the extension will print the Workslip and type "No bib in Koha" in the Holds field. |
-| Title | GetIt | Field hidden if no data |
-| Author | GetIt | Field hidden if no data |
+| Title or MARC 245 (a,h,b,n,p) | GetIt or Koha Item Record | If the item record is available, the workslip will use MARC 245 data and specify which subfields had data present. Otherwise, the title will be pulled from GetIt. |
+| Author or MARC 100 and/or 700 | GetIt or Koha Item Record  | If the item record is available, the workslip will use MARC 100 and/or 700 data, and indicate which fields had data present. Otherwise, the author will be pulled from GetIt. |
 | Bib Record ID | GetIt | Field hidden if no data |
 | MARC 300 | Koha Item Record | Scraped data from MARC 300 (Description) field (including subfields a, b, c, and e) |
 | EAN 13 | GetIt | Field hidden if no data |
 | MARC 092 | Koha Item Record  | Scraped data from MARC 092 field (including subfields a and b) |
 | MARC 099a | Koha Item Record  | Scraped data from MARC 099 subfield a |
 | ISBN | GetIt | Field hidden if no data |
+| ISBN in Koha bib? | Koha Item Record | If the item record is available, this field will indicate whether the ISBN in GetIt is present in the Bib Record in Koha, displaying "Yes" or "No -- UPDATE NEEDED" |
 | ISSN | GetIt | Field hidden if no data |
 | ISMN | GetIt | Field hidden if no data |
 | UPC | GetIt | Field hidden if no data |
