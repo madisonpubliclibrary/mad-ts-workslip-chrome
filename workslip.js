@@ -14,6 +14,8 @@
   let marc099a = document.querySelector('td.marc099a');
   let isbn = document.querySelector('td.isbn');
   let isbnMARC = document.querySelector('td.isbnMARC');
+  let upc024a = document.querySelector('td.upc024a');
+  let supplier028a = document.querySelector('td.supplier028a');
   let issn = document.querySelector('td.issn');
   let ismn = document.querySelector('td.ismn');
   let upc = document.querySelector('td.upc');
@@ -28,6 +30,7 @@
   let rush = document.getElementById('rush');
   let getitCopies = document.getElementById('getitCopies');
   let linkCopies = document.getElementById('linkCopies');
+  let otherNotes = document.querySelector('td.otherNotes');
 
   let copyTableBody = document.getElementById('copyTableBody');
 
@@ -79,6 +82,23 @@
         isbnMARC.textContent = 'Yes';
       }
 
+      if (request.marcData.hasOwnProperty('024a') && request.marcData['024a'].length > 0 && request.upc !== '') {
+        upc024a.parentElement.style.display = '';
+        if (request.marcData['024a'].includes(request.upc)) {
+          upc024a.textContent = 'Yes';
+        }
+      }
+
+      if (request.marcData.hasOwnProperty('028a') && request.marcData['028a'].length > 0 && request.supplierNum !== '') {
+        supplier028a.parentElement.style.display = '';
+        for (let marc028a of request.marcData['028a']) {
+          if (marc028a.includes(request.supplierNum)) {
+            marc028a.textContent = 'Yes';
+            break;
+          }
+        }
+      }
+
       if (request.marcData.hasOwnProperty('092')) {
         marc092.textContent = request.marcData['092'];
       } else {
@@ -93,7 +113,7 @@
 
       // Override title if it was found in MARC data
       if (request.marcData.hasOwnProperty('245')) {
-        titleTH.textContent = 'MARC 245' + request.marcData['245fields']
+        titleTH.textContent = 'MARC 245' + request.marcData['245fields'] + ':';
         title.textContent = request.marcData['245'];
       }
 
@@ -107,6 +127,13 @@
         marc300.textContent = request.marcData['300'];
       } else {
         marc300.parentElement.style.display = 'none';
+      }
+
+      // Check if New AD FIC book over 500 pages
+      if (request.marcData.hasOwnProperty('numPages') && request.hasOwnProperty('isNewADFIC')) {
+        if (request.isNewADFIC && request.marcData.numPages >= 500) {
+          otherNotes.textContent = 'NEW 4-WEEK AD FIC (' + request.marcData.numPages + ' pages)';
+        }
       }
     } else {
       isbnMARC.parentElement.style.display = 'none';
@@ -236,6 +263,6 @@
       copyTableBody.appendChild(tr);
     }
 
-    window.print();
+    //window.print();
   });
 })();
