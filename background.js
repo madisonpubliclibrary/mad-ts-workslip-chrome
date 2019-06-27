@@ -48,7 +48,7 @@ function printWorkslip(tab) {
             });
           });
         } else {
-          resolve('');
+          resolve('No bib in Koha');
         }
       });
 
@@ -72,14 +72,19 @@ function printWorkslip(tab) {
             });
           });
         } else {
-          resolve('');
+          resolve('No bib in Koha');
         }
       });
 
       Promise.all([getHolds, getMARCData]).then(res => {
-        data.holds = res[0].holds;
-        data.linkCopies = res[0].linkCopies;
-        data.marcData = res[1];
+        if (res[0] === 'No bib in Koha') {
+          data.holds = res[0];
+        } else {
+          data.holds = res[0].holds;
+          data.linkCopies = res[0].linkCopies;
+          data.isNewADFIC = res[0].isNewADFIC;
+          data.marcData = res[1];
+        }
 
         chrome.tabs.create({
           "url": chrome.runtime.getURL("workslip.html")

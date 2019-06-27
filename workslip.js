@@ -93,7 +93,7 @@
         supplier028a.parentElement.style.display = '';
         for (let marc028a of request.marcData['028a']) {
           if (marc028a.includes(request.supplierNum)) {
-            marc028a.textContent = 'Yes';
+            supplier028a.textContent = 'Yes';
             break;
           }
         }
@@ -263,6 +263,6 @@
       copyTableBody.appendChild(tr);
     }
 
-    //window.print();
+    window.print();
   });
 })();
