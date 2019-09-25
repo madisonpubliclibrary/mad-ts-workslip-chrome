@@ -2,8 +2,8 @@ chrome.contextMenus.create({
   "id": "print-workslip",
   "title": "Print MAD-TS Workslip",
   "documentUrlPatterns": [
-    "https://scls-mad-staff.kohalibrary.com/cgi-bin/koha/acqui/getit.pl",
-    "https://scls-mad-staff.kohalibrary.com/getit/public/index.html"],
+    "https://lakscls-sandbox.bibliovation.com/app/staff/acquisitions",
+    "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html"],
   "contexts": ["all"],
   "visible": true
 });
@@ -32,7 +32,7 @@ function printWorkslip(tab) {
       let getHolds = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/catalogue/detail.pl?biblionumber=" + data.bibRecId,
+            "url": "https://lakscls-sandbox.bibliovation.com/app/staff/bib/" + data.bibRecId + "/details",
             "active": false
           }, function(holdsTab) {
             chrome.tabs.executeScript(holdsTab.id, {
@@ -55,8 +55,8 @@ function printWorkslip(tab) {
       let getMARCData = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://scls-staff.kohalibrary.com/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber="
-                   + data.bibRecId + '&frameworkcode=BKS',
+            "url": "https://lakscls-sandbox.bibliovation.com/app/staff/bib/" +
+                    data.bibRecId + "/marc",
             "active": false
           }, function(marcTab) {
             chrome.tabs.executeScript(marcTab.id, {
@@ -96,8 +96,9 @@ function printWorkslip(tab) {
           }, 450);
         });
       }, reject => {
+        console.log(reject);
         chrome.tabs.create({
-          "url": "https://scls-staff.kohalibrary.com",
+          "url": "https://lakscls-sandbox.bibliovation.com",
           "active": true
         });
       });
