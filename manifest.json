@@ -40,6 +40,6 @@
     "permissions": [
       "contextMenus",
       "tabs",
-      "*://*.kohalibrary.com/*"
+      "*://*.bibliovation.com/*"
     ]
 }
