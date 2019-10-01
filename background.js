@@ -63,7 +63,7 @@ function printWorkslip(tab) {
                     data.bibRecId,
             "active": true
           }, function(marcTab) {
-            let marcTimeout = 20; // 20 * 400ms = sec
+            let marcTimeout = 20; // 20 * 400ms = 8sec
             let waitForMARC = setInterval(() => {
               marcTimeout--;
               if (marcTimeout === 0) {
