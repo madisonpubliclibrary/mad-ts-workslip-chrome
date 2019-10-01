@@ -111,7 +111,6 @@ function printWorkslip(tab) {
           }, 450);
         });
       }, reject => {
-        console.log(reject);
         chrome.tabs.create({
           "url": "https://lakscls-sandbox.bibliovation.com",
           "active": true
