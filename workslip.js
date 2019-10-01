@@ -15,7 +15,6 @@
   let isbn = document.querySelector('td.isbn');
   let isbnMARC = document.querySelector('td.isbnMARC');
   let upc024a = document.querySelector('td.upc024a');
-  let supplier028a = document.querySelector('td.supplier028a');
   let issn = document.querySelector('td.issn');
   let ismn = document.querySelector('td.ismn');
   let upc = document.querySelector('td.upc');
@@ -86,16 +85,6 @@
         upc024a.parentElement.style.display = '';
         if (request.marcData['024a'].includes(request.upc)) {
           upc024a.textContent = 'Yes';
-        }
-      }
-
-      if (request.marcData.hasOwnProperty('028a') && request.marcData['028a'].length > 0 && request.supplierNum !== '') {
-        supplier028a.parentElement.style.display = '';
-        for (let marc028a of request.marcData['028a']) {
-          if (marc028a.includes(request.supplierNum)) {
-            supplier028a.textContent = 'Yes';
-            break;
-          }
         }
       }
 

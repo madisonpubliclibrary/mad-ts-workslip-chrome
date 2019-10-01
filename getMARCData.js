@@ -6,7 +6,7 @@
     return 'marcError';
   } else {
     const marcData = {};
-    
+
     const marc092a = document.querySelector('.f092 .sf-a .sf-value');
     const marc092b = document.querySelector('.f092 .sf-b .sf-value');
     const marc099a = document.querySelector('.f099 .sf-a .sf-value');
@@ -34,7 +34,7 @@
     if (marc300a && marc300a.value !== '') {
       bibDescriptionArr.push(marc300a.value);
       // Try to get number of pages
-      let pagesNum = document.querySelector('[id^="tag_300_subfield_a"]').value.match(/\d+ pages/);
+      let pagesNum = marc300a.value.match(/\d+ pages/);
       if (pagesNum) {
         if (pagesNum.length > 0) pagesNum = pagesNum[0].match(/\d+/);
         if (pagesNum.length > 0) marcData.numPages = parseInt(pagesNum[0]);
@@ -46,11 +46,11 @@
 
     if (bibDescriptionArr.length > 0) marcData['300'] = bibDescriptionArr.join(' ');
 
-    const marc245a = document.querySelector('[id^="tag_245_subfield_a"]');
-    const marc245h = document.querySelector('[id^="tag_245_subfield_h"]');
-    const marc245b = document.querySelector('[id^="tag_245_subfield_b"]');
-    const marc245n = document.querySelector('[id^="tag_245_subfield_n"]');
-    const marc245p = document.querySelector('[id^="tag_245_subfield_p"]');
+    const marc245a = document.querySelector('.f245 .sf-a .sf-value');
+    const marc245h = document.querySelector('.f245 .sf-h .sf-value');
+    const marc245b = document.querySelector('.f245 .sf-b .sf-value');
+    const marc245n = document.querySelector('.f245 .sf-n .sf-value');
+    const marc245p = document.querySelector('.f245 .sf-p .sf-value');
 
     if (marc245a && marc245a.value.trim() !== '') {
       titleSubfields.push('a');
@@ -73,8 +73,8 @@
       titleArr.push(marc245p.value);
     }
 
-    const marc100a = document.querySelector('[id^="tag_100_subfield_a"]');
-    const marc700a = document.querySelector('[id^="tag_700_subfield_a"]');
+    const marc100a = document.querySelector('.f100 .sf-a .sf-value');
+    const marc700a = document.querySelector('.f700 .sf-a .sf-value');
 
     if (marc100a && marc100a.value.length > 0 && marc700a && marc700a.value.length > 0) {
       marcData['100+700title'] = 'MARC 100/700:';
@@ -90,7 +90,7 @@
     marcData['245'] = titleArr.join(' ');
     marcData['245fields'] = titleSubfields.join(',');
 
-    for (let isbnElt of document.querySelectorAll('[id^="tag_020_subfield_a"]')) {
+    for (let isbnElt of document.querySelectorAll('.f020 .sf-a .sf-value')) {
       if (isbnElt.value != '') isbnArr.push(isbnElt.value);
     }
 
