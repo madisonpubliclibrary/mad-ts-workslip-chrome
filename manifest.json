@@ -30,7 +30,6 @@
           "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html",
           "https://lakscls-sandbox.bibliovation.com/cgi-bin/koha/acqui/getit.pl"
         ],
-        "all_frames": true,
         "js": [
           "/ctrlColonPrint.js"
         ],
