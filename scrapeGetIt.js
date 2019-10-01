@@ -39,6 +39,7 @@
     let bibRecId = contentDoc.getElementById('pou-bibliographic_record_id');
     data.bibRecId = bibRecId ? bibRecId.value : '';
     let getitCopies = /\d+ Copies/.exec(contentDoc.querySelector('.active div[ng-controller="PurchaseOrderLinesUpdateCtrl"]').textContent);
+
     data.getitCopies = getitCopies.length === 1 ? /\d+/.exec(getitCopies[0])[0] : '?';
     let orderLineRef = contentDoc.getElementById('pou-order_line_reference');
     if (orderLineRef && orderLineRef.value.length > 0) {
