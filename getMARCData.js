@@ -6,26 +6,15 @@
     return 'marcError';
   } else {
     const marcData = {};
+    
+    const marc092a = document.querySelector('.f092 .sf-a .sf-value');
+    const marc092b = document.querySelector('.f092 .sf-b .sf-value');
+    const marc099a = document.querySelector('.f099 .sf-a .sf-value');
 
-    const marc024a = document.querySelectorAll('[id^="tag_024_subfield_a"]');
-    const marc028a = document.querySelectorAll('[id^="tag_028_subfield_a"]');
-
-    if (marc024a.length > 0) {
-      marcData['024a'] = [...marc024a].map(x => x.value).filter(x => x !== '');
-    }
-
-    if (marc028a.length > 0) {
-      marcData['028a'] = [...marc028a].map(x => x.value).filter(x => x !== '');
-    }
-
-    const marc092a = document.querySelector('[id^="tag_092_subfield_a"]');
-    const marc092b = document.querySelector('[id^="tag_092_subfield_b"]');
-    const marc099a = document.querySelector('[id^="tag_099_subfield_a"]');
-
-    const marc300a = document.querySelector('[id^="tag_300_subfield_a"]');
-    const marc300b = document.querySelector('[id^="tag_300_subfield_b"]');
-    const marc300c = document.querySelector('[id^="tag_300_subfield_c"]');
-    const marc300e = document.querySelector('[id^="tag_300_subfield_e"]');
+    const marc300a = document.querySelector('.f300 .sf-a .sf-value');
+    const marc300b = document.querySelector('.f300 .sf-b .sf-value');
+    const marc300c = document.querySelector('.f300 .sf-c .sf-value');
+    const marc300e = document.querySelector('.f300 .sf-e .sf-value');
 
     const bibDescriptionArr = [];
     const titleSubfields = [];
@@ -55,7 +44,7 @@
     if (marc300c && marc300c.value !== '') bibDescriptionArr.push(marc300c.value);
     if (marc300e && marc300e.value !== '') bibDescriptionArr.push(marc300e.value);
 
-    marcData['300'] = bibDescriptionArr.join(' ');
+    if (bibDescriptionArr.length > 0) marcData['300'] = bibDescriptionArr.join(' ');
 
     const marc245a = document.querySelector('[id^="tag_245_subfield_a"]');
     const marc245h = document.querySelector('[id^="tag_245_subfield_h"]');

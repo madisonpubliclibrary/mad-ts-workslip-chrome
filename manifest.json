@@ -26,8 +26,9 @@
     "content_scripts": [
       {
         "matches": [
-          "https://scls-mad-staff.kohalibrary.com/cgi-bin/koha/acqui/getit.pl",
-          "https://scls-mad-staff.kohalibrary.com/getit/public/index.html"
+          "https://lakscls-sandbox.bibliovation.com/app/staff/acquisitions",
+          "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html",
+          "https://lakscls-sandbox.bibliovation.com/cgi-bin/koha/acqui/getit.pl"
         ],
         "all_frames": true,
         "js": [

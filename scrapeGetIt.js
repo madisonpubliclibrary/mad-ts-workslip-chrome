@@ -38,7 +38,7 @@
     data.description = description ? description.value : '';
     let bibRecId = contentDoc.getElementById('pou-bibliographic_record_id');
     data.bibRecId = bibRecId ? bibRecId.value : '';
-    let getitCopies = /\d+ Copies/.exec(document.querySelector('.active div[ng-controller="PurchaseOrderLinesUpdateCtrl"]').textContent);
+    let getitCopies = /\d+ Copies/.exec(contentDoc.querySelector('.active div[ng-controller="PurchaseOrderLinesUpdateCtrl"]').textContent);
     data.getitCopies = getitCopies.length === 1 ? /\d+/.exec(getitCopies[0])[0] : '?';
     let orderLineRef = contentDoc.getElementById('pou-order_line_reference');
     if (orderLineRef && orderLineRef.value.length > 0) {
@@ -58,19 +58,18 @@
     if (rushCheckbox.checked) data.rush = true;
 
     data.copies = [];
-    let copyTable = contentDoc.querySelector('.active div[ng-include="\'app/purchase_order_line_copies/index.html\'"] .ngCanvas');
+    let rows = contentDoc.querySelectorAll('#polc-index div[ui-grid-row="row"]');
 
-    if (copyTable) {
-      for (let row of copyTable.children) {
-        row = row.children[0].children[1];
-
+    if (rows) {
+      rows = Array.from(rows).filter((v,i) => {return i >= rows.length/2});
+      for (let row of rows) {
         let copy = {};
 
-        copy.copyLoc = row.children[0].textContent.trim();
-        copy.receiptStatus = row.children[2].textContent.trim().substring(0,3) + '\'d';
-        copy.staffNote = row.children[7].textContent.trim();
+        copy.copyLoc = row.children[1].textContent.trim();
+        copy.receiptStatus = row.children[3].textContent.trim().substring(0,3) + '\'d';
+        copy.staffNote = row.children[5].textContent.trim();
 
-        if (/[^a-zA-Z]*rush[^a-zA-Z]*/i.test(copy.staffNote)) {
+        if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
           data.rush = true;
         }
 
