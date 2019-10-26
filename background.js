@@ -45,14 +45,14 @@ function printWorkslip(tab) {
                     clearInterval(waitForHolds);
                     resolve(holdsArr[0]);
                   } else if (holdsArr[0] === 'holdsError') {
-                      reject('Unable to find item holds data; not logged into Koha.');
+                      reject('Unable to find item holds data; not logged into B\'vation.');
                   }
                 }
               });
             }, 400);
           });
         } else {
-          resolve('No bib in Koha');
+          resolve('No bib in B\'vation');
         }
       });
 
@@ -80,19 +80,19 @@ function printWorkslip(tab) {
                     clearInterval(waitForMARC);
                     resolve(marcArr[0]);
                   } else if (marcArr[0] === 'marcError') {
-                    reject('Unable to find MARC data; not logged into Koha.');
+                    reject('Unable to find MARC data; not logged into B\'vation.');
                   }
                 }
               });
             }, 400);
           });
         } else {
-          resolve('No bib in Koha');
+          resolve('No bib in B\'vation');
         }
       });
 
       Promise.all([getHolds, getMARCData]).then(res => {
-        if (res[0] === 'No bib in Koha') {
+        if (res[0] === 'No bib in B\'vation') {
           data.holds = res[0];
         } else {
           data.holds = res[0].holds;
