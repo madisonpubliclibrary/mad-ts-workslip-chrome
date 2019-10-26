@@ -68,7 +68,7 @@
 
         copy.copyLoc = row.children[1].textContent.trim();
         copy.receiptStatus = row.children[3].textContent.trim().substring(0,3) + '\'d';
-        copy.staffNote = row.children[5].textContent.trim();
+        copy.staffNote = row.children[4].textContent.trim();
 
         if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
           data.rush = true;
