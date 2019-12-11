@@ -26,9 +26,9 @@
     "content_scripts": [
       {
         "matches": [
-          "https://lakscls-sandbox.bibliovation.com/app/staff/acquisitions",
-          "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html",
-          "https://lakscls-sandbox.bibliovation.com/cgi-bin/koha/acqui/getit.pl"
+          "https://scls.kohalibrary.com/app/staff/acquisitions",
+          "https://scls.kohalibrary.com/getit/app/static/partials/index-dev.html",
+          "https://scls.kohalibrary.com/cgi-bin/koha/acqui/getit.pl"
         ],
         "js": [
           "/ctrlColonPrint.js"
@@ -40,6 +40,6 @@
     "permissions": [
       "contextMenus",
       "tabs",
-      "*://*.bibliovation.com/*"
+      "*://*.kohalibrary.com/*"
     ]
 }
