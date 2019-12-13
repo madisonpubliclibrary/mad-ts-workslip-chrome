@@ -2,8 +2,8 @@ chrome.contextMenus.create({
   "id": "print-workslip",
   "title": "Print MAD-TS Workslip",
   "documentUrlPatterns": [
-    "https://lakscls-sandbox.bibliovation.com/app/staff/acquisitions",
-    "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html"],
+    "https://mad.scls.kohalibrary.com/app/staff/acquisitions",
+    "https://mad.scls.kohalibrary.com/getit/app/static/partials/index-dev.html"],
   "contexts": ["all"],
   "visible": true
 });
@@ -32,7 +32,7 @@ function printWorkslip(tab) {
       let getHolds = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://lakscls-sandbox.bibliovation.com/app/staff/bib/" + data.bibRecId + "/details",
+            "url": "https://mad.scls.kohalibrary.com/app/staff/bib/" + data.bibRecId + "/details",
             "active": true
           }, function(holdsTab) {
             let waitForHolds = setInterval(() => {
@@ -59,7 +59,7 @@ function printWorkslip(tab) {
       let getMARCData = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://lakscls-sandbox.bibliovation.com/app/staff/marced/edit/" +
+            "url": "https://mad.scls.kohalibrary.com/staff/marced/edit/" +
                     data.bibRecId,
             "active": true
           }, function(marcTab) {
@@ -112,7 +112,7 @@ function printWorkslip(tab) {
         });
       }, reject => {
         chrome.tabs.create({
-          "url": "https://lakscls-sandbox.bibliovation.com",
+          "url": "https://mad.scls.kohalibrary.com",
           "active": true
         });
       });

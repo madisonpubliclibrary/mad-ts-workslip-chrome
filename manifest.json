@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MAD-TS Workslip",
-  "version": "1.0",
+  "version": "1.1",
   "author": "Lucas Schneider",
   "description": "Context menu link to print TS workslips for Madison Central Library of Wisconsin's South Central Library System",
   "homepage_url": "https://lrschneider.com/mad-ts-workslip-chrome",
@@ -26,9 +26,9 @@
     "content_scripts": [
       {
         "matches": [
-          "https://lakscls-sandbox.bibliovation.com/app/staff/acquisitions",
-          "https://lakscls-sandbox.bibliovation.com/getit/app/static/partials/index-dev.html",
-          "https://lakscls-sandbox.bibliovation.com/cgi-bin/koha/acqui/getit.pl"
+          "https://mad.scls.kohalibrary.com/app/staff/acquisitions",
+          "https://mad.scls.kohalibrary.com/getit/app/static/partials/index-dev.html",
+          "https://mad.scls.kohalibrary.com/cgi-bin/koha/acqui/getit.pl"
         ],
         "js": [
           "/ctrlColonPrint.js"
@@ -40,6 +40,6 @@
     "permissions": [
       "contextMenus",
       "tabs",
-      "*://*.bibliovation.com/*"
+      "*://*.kohalibrary.com/*"
     ]
 }
