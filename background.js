@@ -59,7 +59,7 @@ function printWorkslip(tab) {
       let getMARCData = new Promise(function(resolve, reject) {
         if (data.bibRecId.length > 0) {
           chrome.tabs.create({
-            "url": "https://mad.scls.kohalibrary.com/staff/marced/edit/" +
+            "url": "https://mad.scls.kohalibrary.com/app/staff/marced/edit/" +
                     data.bibRecId,
             "active": true
           }, function(marcTab) {

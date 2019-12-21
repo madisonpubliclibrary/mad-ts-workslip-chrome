@@ -62,13 +62,14 @@
     let rows = contentDoc.querySelectorAll('#polc-index div[ui-grid-row="row"]');
 
     if (rows) {
-      rows = Array.from(rows).filter((v,i) => {return i >= rows.length/2});
+      //rows = Array.from(rows).filter((v,i) => {return i >= rows.length/2});
       for (let row of rows) {
         let copy = {};
-
-        copy.copyLoc = row.children[1].textContent.trim();
-        copy.receiptStatus = row.children[3].textContent.trim().substring(0,3) + '\'d';
-        copy.staffNote = row.children[4].textContent.trim();
+        if (row.children.length > 4 && row.children[1] && row.children[3] && row.children[4]) {
+          copy.copyLoc = row.children[1].textContent.trim();
+          copy.receiptStatus = row.children[3].textContent.trim().substring(0,3) + '\'d';
+          copy.staffNote = row.children[4].textContent.trim();
+        }
 
         if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
           data.rush = true;
