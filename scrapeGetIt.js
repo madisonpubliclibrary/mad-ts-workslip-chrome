@@ -59,23 +59,32 @@
     if (rushCheckbox.checked) data.rush = true;
 
     data.copies = [];
+    let header = contentDoc.querySelectorAll('#polc-index .ui-grid-header');
     let rows = contentDoc.querySelectorAll('#polc-index div[ui-grid-row="row"]');
 
-    if (rows) {
-      //rows = Array.from(rows).filter((v,i) => {return i >= rows.length/2});
+    if (header.length > 0 && rows.length > 0) {
+      header = header[1].textContent.split(/\s+/);
+      const locationIdx = header.indexOf("Location");
+      const statusIdx = header.indexOf("Status");
+      const notesIdx = header.indexOf("Notes");
+
+      rows = Array.from(rows).filter(row => row.textContent.trim() === '');
+
       for (let row of rows) {
-        let copy = {};
-        if (row.children.length > 4 && row.children[1] && row.children[3] && row.children[4]) {
-          copy.copyLoc = row.children[1].textContent.trim();
-          copy.receiptStatus = row.children[3].textContent.trim().substring(0,3) + '\'d';
-          copy.staffNote = row.children[4].textContent.trim();
-        }
+        if (row.length > Math.max(locationIdx, statusIdx, notesIdx) &&
+            row.children[locationIdx] && row.children[statusIdx] && row.children[notesIdx]) {
+          let copy = {};
 
-        if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
-          data.rush = true;
-        }
+          copy.copyLoc = row.children[locationIdx].textContent.trim();
+          copy.receiptStatus = row.children[statusIdx].textContent.trim().substring(0,3) + '\'d';
+          copy.staffNote = row.children[notesIdx].textContent.trim();
 
-        data.copies.push(copy);
+          if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
+            data.rush = true;
+          }
+
+          data.copies.push(copy);
+        }
       }
 
       data.copies.sort((a,b) => {return a.copyLoc > b.copyLoc ? 1 : b.copyLoc > a.copyLoc ? -1 : 0;});
