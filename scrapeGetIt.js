@@ -1,7 +1,10 @@
-(function(){
+(function() {
   'use strict';
   let contentDoc = document.getElementById('staff-iframe');
-  let data = {"dateToday": (new Date()).toLocaleDateString(), "rush": false};
+  let data = {
+    "dateToday": (new Date()).toLocaleDateString(),
+    "rush": false
+  };
 
   if (contentDoc) {
     contentDoc = contentDoc.contentWindow.document.getElementById('frame').contentWindow.document;
@@ -59,36 +62,46 @@
     if (rushCheckbox.checked) data.rush = true;
 
     data.copies = [];
-    let header = contentDoc.querySelectorAll('#polc-index .ui-grid-header');
-    let rows = contentDoc.querySelectorAll('#polc-index div[ui-grid-row="row"]');
 
-    if (header.length > 0 && rows.length > 0) {
-      header = header[1].textContent.split(/\s+/);
-      const locationIdx = header.indexOf("Location");
-      const statusIdx = header.indexOf("Status");
-      const notesIdx = header.indexOf("Notes");
+    if (window.bibCopies && window.bibCopies.length > 0) {
+      for (let item of window.bibCopies) {
+        let copy = {};
 
-      rows = Array.from(rows).filter(row => row.textContent.trim() === '');
+        copy.copyLoc = item.loc;
+        copy.receiptStatus = item.stat;
+        copy.staffNote = item.note;
 
-      for (let row of rows) {
-        if (row.length > Math.max(locationIdx, statusIdx, notesIdx) &&
-            row.children[locationIdx] && row.children[statusIdx] && row.children[notesIdx]) {
-          let copy = {};
+        if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
+          data.rush = true;
+        }
 
-          copy.copyLoc = row.children[locationIdx].textContent.trim();
-          copy.receiptStatus = row.children[statusIdx].textContent.trim().substring(0,3) + '\'d';
-          copy.staffNote = row.children[notesIdx].textContent.trim();
+        data.copies.push(copy);
+      }
+      window.bibCopies = [];
+    } else {
+      let header = contentDoc.querySelectorAll('#polc-index .ui-grid-header');
 
-          if (/[^a-z]*rush[^a-z]*/i.test(copy.staffNote)) {
-            data.rush = true;
+      if (header.length > 1) {
+        header = header[1].textContent.split(/\s+/);
+        const locationIdx = header.indexOf("Location");
+        const statusIdx = header.indexOf("Status");
+        const notesIdx = header.indexOf("Notes");
+
+        let rows = contentDoc.querySelectorAll('#polc-index div[ui-grid-row="row"]');
+        for (let i = 0; i < rows.length; i++) {
+          let copy = {}
+          if (rows[i].textContent !== '') {
+
+            data.copies.push({
+              "copyLoc": rows[i].children[locationIdx].textContent.trim(),
+              "receiptStatus": rows[i].children[statusIdx].textContent.trim().substring(0, 3) + '\'d',
+              "staffNote": rows[i].children[notesIdx].textContent.trim()
+            });
           }
-
-          data.copies.push(copy);
         }
       }
-
-      data.copies.sort((a,b) => {return a.copyLoc > b.copyLoc ? 1 : b.copyLoc > a.copyLoc ? -1 : 0;});
     }
+    data.copies.sort((a,b)=>{return a.copyLoc > b.copyLoc ? 1 : b.copyLoc > a.copyLoc ? -1 : 0;});
   }
   return data;
 })();
