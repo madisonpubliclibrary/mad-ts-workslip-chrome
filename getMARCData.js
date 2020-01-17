@@ -7,6 +7,8 @@
   } else {
     const marcData = {};
 
+    const marc001 = document.querySelectorAll('km-marc-datafield input:first-of-type');
+
     const marc092a = document.querySelector('.f092 .sf-a .sf-value');
     const marc092b = document.querySelector('.f092 .sf-b .sf-value');
     const marc099a = document.querySelector('.f099 .sf-a .sf-value');
@@ -20,6 +22,10 @@
     const titleSubfields = [];
     const titleArr = [];
     const isbnArr = [];
+
+    if (marc001.length > 1) {
+      marcData['001'] = marc001[1].value;
+    }
 
     if (marc092a) {
       marcData['092'] = marc092a.value;

@@ -10,6 +10,7 @@
   let bibRecId = document.querySelector('td.bibRecId');
   let marc300 = document.querySelector('td.marc300');
   let ean13 = document.querySelector('td.ean13');
+  let marc001 = document.querySelector('td.marc001');
   let marc092 = document.querySelector('td.marc092');
   let marc099a = document.querySelector('td.marc099a');
   let isbn = document.querySelector('td.isbn');
@@ -86,6 +87,12 @@
         if (request.marcData['024a'].includes(request.upc)) {
           upc024a.textContent = 'Yes';
         }
+      }
+
+      if (request.marcData.hasOwnProperty('001')) {
+        marc001.textContent = request.marcData['001'];
+      } else {
+        marc001.innerHTML = '&nbsp;';
       }
 
       if (request.marcData.hasOwnProperty('092')) {

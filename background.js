@@ -95,7 +95,7 @@ function printWorkslip(tab) {
                 "file": "getMARCData.js"
               }, marcArr => {
                 if (marcArr && marcArr.length > 0 && marcArr[0] !== null) {
-                  if (marcArr[0].hasOwnProperty('092') || marcArr[0].hasOwnProperty('099a') || marcArr[0].hasOwnProperty('300')) {
+                  if (marcArr[0].hasOwnProperty('001') && (marcArr[0].hasOwnProperty('092') || marcArr[0].hasOwnProperty('099a') || marcArr[0].hasOwnProperty('300'))) {
                     chrome.tabs.remove(marcTab.id);
                     clearInterval(waitForMARC);
                     resolve(marcArr[0]);
