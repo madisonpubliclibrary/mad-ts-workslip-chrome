@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "MAD-TS Workslip",
-  "version": "1.4",
+  "version": "1.5",
   "author": "Lucas Schneider",
-  "description": "Context menu link to print TS workslips for Madison Central Library of Wisconsin's South Central Library System",
+  "description": "MAD-TS Workslip adds a context menu link to print workslips in GetIt Acquisitions with the Bibliovation ILS.",
   "homepage_url": "https://lrschneider.com/mad-ts-workslip-chrome",
 
   "incognito": "spanning",

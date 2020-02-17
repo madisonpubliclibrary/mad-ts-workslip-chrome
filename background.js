@@ -63,6 +63,7 @@ function printWorkslip(tab) {
                   if (holdsArr[0].hasOwnProperty('holds')) {
                     chrome.tabs.remove(holdsTab.id);
                     clearInterval(waitForHolds);
+                    window.bibCopies = [];
                     resolve(holdsArr[0]);
                   } else if (holdsArr[0] === 'holdsError') {
                       reject('Unable to find item holds data; not logged into B\'vation.');
@@ -83,7 +84,7 @@ function printWorkslip(tab) {
                     data.bibRecId,
             "active": true
           }, function(marcTab) {
-            let marcTimeout = 20; // 20 * 400ms = 8sec
+            let marcTimeout = 50; // 50 * 400ms = 20sec
             let waitForMARC = setInterval(() => {
               marcTimeout--;
               if (marcTimeout === 0) {
