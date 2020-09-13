@@ -2,7 +2,7 @@
 
 | Current Version | Install on Google Chrome | Author |
 | :-------------: | :----------------: | :----: |
-| <br>1.5        | <br>[Install MAD-TS Workslip][1] | Lucas Schneider<br>Library Page II<br>MPL–Central |
+| <br>1.6        | <br>[Install MAD-TS Workslip][1] | Lucas Schneider<br>Library Page II<br>MPL–Central |
 
 This extension is developed for the Technical Services department of Madison Central Library in Madison, WI. It aggregates data from GetIt and Liblime Koha to streamline acquisitions processing by generating a printable workslip.
 

@@ -82,7 +82,7 @@
       let header = contentDoc.querySelectorAll('#polc-index .ui-grid-header');
 
       if (header.length > 1) {
-        header = header[1].textContent.split(/\s+/);
+        header = header[1].textContent.split(/\s\s+/);
         const locationIdx = header.indexOf("Location");
         const statusIdx = header.indexOf("Status");
         const notesIdx = header.indexOf("Notes");
