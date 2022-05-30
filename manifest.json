@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MAD-TS Workslip",
-  "version": "1.6",
+  "version": "2022.6.1",
   "author": "Lucas Schneider",
   "description": "MAD-TS Workslip adds a context menu link to print workslips in GetIt Acquisitions with the Bibliovation ILS.",
   "homepage_url": "https://lrschneider.com/mad-ts-workslip-chrome",
@@ -26,9 +26,9 @@
     "content_scripts": [
       {
         "matches": [
-          "https://mad.scls.kohalibrary.com/app/staff/acquisitions",
-          "https://mad.scls.kohalibrary.com/getit/app/static/partials/index-dev.html",
-          "https://mad.scls.kohalibrary.com/cgi-bin/koha/acqui/getit.pl"
+          "https://mad.scls.bibliovation.com/app/staff/acquisitions",
+          "https://mad.scls.bibliovation.com/getit/app/static/partials/index-dev.html",
+          "https://mad.scls.bibliovation.com/cgi-bin/koha/acqui/getit.pl"
         ],
         "js": [
           "/ctrlColonPrint.js"
@@ -41,6 +41,6 @@
       "activeTab",
       "contextMenus",
       "tabs",
-      "*://*.kohalibrary.com/*"
+      "*://*.bibliovation.com/*"
     ]
 }
