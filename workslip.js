@@ -34,7 +34,7 @@
 
   let copyTableBody = document.getElementById('copyTableBody');
 
-  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.poNum !== '') {
       poNum.textContent = request.poNum;
     } else {
@@ -77,9 +77,24 @@
       ean13.parentElement.style.display = 'none';
     }
 
+    // If MARC data is returned
     if (request.hasOwnProperty('marcData') && request.marcData !== '') {
-      if (request.marcData.hasOwnProperty('020') && request.isbn !== '' && request.marcData['020'].includes(request.isbn)) {
-        isbnMARC.textContent = 'Yes';
+      // If MARC 020$a contained a 10 and/or 13-digit ISBN
+      if (request.marcData.hasOwnProperty('020') && request.marcData['020'].length > 0) {
+        // Use whichever ISBN was listed first in the workslip
+        isbn.textContent = request.marcData['020'][0];
+        // If the GetIT ISBN match digits appear in any of the MARC ISBN(s),
+        // Confirm MARC ISBN is OK, else indicate update needed
+        if (request.isbnMatchDigits.length === 9 && request.marcData['020'].some(i => i.includes(request.isbnMatchDigits))) {
+          isbnMARC.textContent = "Yes";
+        } else {
+          isbnMARC.textContent = "No — UPDATE NEEDED";
+        }
+      } else {
+        // Update also needed if no MARC ISBN but GetIT has valid ISBN
+        if (request.isbn.length === 10 || request.isbn.length === 13) {
+          isbnMARC.textContent = "No — UPDATE NEEDED";
+        }
       }
 
       if (request.marcData.hasOwnProperty('024a') && request.marcData['024a'].length > 0 && request.upc !== '') {
@@ -134,13 +149,6 @@
     } else {
       isbnMARC.parentElement.style.display = 'none';
       marc300.parentElement.style.display = 'none';
-    }
-
-    if (request.isbn !== '') {
-      isbn.textContent = request.isbn;
-    } else {
-      isbn.parentElement.style.display = 'none';
-      isbnMARC.parentElement.style.display = 'none';
     }
 
     if (request.issn !== '') {

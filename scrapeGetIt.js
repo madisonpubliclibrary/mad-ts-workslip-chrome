@@ -16,7 +16,17 @@
     let ean13 = contentDoc.getElementById('pou-EAN13');
     data.ean13 = ean13 ? ean13.value : '';
     let isbn = contentDoc.getElementById('pou-ISBN');
-    data.isbn = isbn ? isbn.value : '';
+    // Check whether ISBN is 10 or 13 digits
+    if (isbn && /^(?:978)?\d{10}$/.test(isbn.value.trim())) {
+      data.isbn = isbn.value.trim();
+      // Ignore final digit, then extract right 9 to compare with MARC ISBN
+      let isbnMatchDigits = data.isbn.match(/^(?:978)?(\d{9})\d$/);
+      data.isbnMatchDigits = isbnMatchDigits && isbnMatchDigits.length === 2
+          ? isbnMatchDigits[1] : '';
+    } else {
+      data.isbn = '';
+      data.isbnMatchDigits = '';
+    }
     let issn = contentDoc.getElementById('pou-ISSN');
     data.issn = issn ? issn.value : '';
     let ismn = contentDoc.getElementById('pou-ISMN');
